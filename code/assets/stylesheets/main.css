@@ -1,0 +1,283 @@
+* { 
+	margin: 0; 
+	font-style: normal;
+	overflow: auto;
+}
+
+a {
+	text-decoration: none;
+}
+
+body {
+	background-color: #EDEFF4;
+	text-align: center;
+	overflow: hidden;
+}
+
+input[type="search"] {
+	border: none;
+	height: 32px;
+	font-size: 20px;
+	text-align: left;
+}
+
+#source-name {
+	font-size: 28px;
+	color: #e74c3c;
+}
+
+#search-box {
+	width: 40%;
+}
+
+#autkey-box {
+	font-size: 16px;
+	height: 32px;
+	width: 115px;
+	padding-left: 5px;
+	-webkit-appearance: none;
+	background: url(../images/icon.ico) 96% / 15% no-repeat #eee;
+}
+
+#number-box {
+	width: 50px;
+	font-size: 18px;
+	height: 32px;
+}
+
+#wordcloud {
+	width: 1000px;
+	height: 500px;
+	/*background-color: #FFFFFF;*/
+	text-align: center;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	-khtml-border-radius: 10px;
+	line-height: 20px;
+}
+
+#search_info {
+	width: 1000px;
+	height: 600px;
+	/*background-color: #FFFFFF;*/
+	text-align: center;
+	line-height: 20px;
+	margin-top: 20px;
+	margin-bottom: 40px;
+	overflow: scroll;
+}
+
+#home-wrapper {
+		position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -80%);
+}
+
+.button {
+	font-family: Arial;
+	color: #FFF;
+	font-size: 20px;
+	background: #2A2C2B;
+	border: none;
+	width: 58%;
+	padding: 6px 150px 6px 150px;
+	text-decoration: none;
+}
+
+
+.inner-wrap {
+	margin-top: 3px;
+}
+
+.wrapper {
+	margin: 0 auto;
+	width: 1000px;
+	overflow: auto;
+}
+
+.header {
+	font-size: 35px;
+}
+
+#tftable {
+	font-size:12px;
+	font-family: Helvetica;
+	color:#000;
+	width:100%;
+	border-width: 1px;
+	border-color: #000;
+	border-collapse: collapse;
+}
+						
+#tftable th {
+	font-size:14px;
+	background-color:#ccc;
+	border-width: 1px;
+	padding: 2px;
+	border-style: solid;
+}
+
+#tftable tr {
+	background-color:#eee;
+}
+
+#tftable td {
+	font-size:11.5px;
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	text-align: left;
+}
+
+td {
+	line-height: 105%;
+}
+
+.close_link {
+	font-size: 24px;
+	position: fixed;
+	left: 50%;
+	top: 65%;
+	padding-top: 20px;
+	height:10%;
+
+}
+
+.table-button {
+	font-family: Arial;
+	color: #FFF;
+	font-size: 20px;
+	background: #2A2C2B;
+	text-decoration: none;
+	position: relative;
+	margin-top: 20px;
+	vertical-align: top;
+	width: 100%;
+	height: 40px;
+	padding: 0;
+	text-align: center;
+	border: none;
+	vertical-align: middle
+}
+
+.a-button {
+	vertical-align: middle;
+}
+
+.black_overlay {
+	display: none;
+	position: fixed;
+	top: 0%;
+	left: 0%;
+	width: 100%;
+	height: 150%;
+	background-color: black;
+	z-index: 1001;
+	-moz-opacity: 0.8;
+	opacity: .80;
+	filter: alpha(opacity=80);
+}
+
+#table-nav {
+
+}
+
+.white_content {
+	display: none;
+	position: fixed;
+	top: 25%;
+	left: 25%;
+	width: 50%;
+	height: 50%;
+	background-color: white;
+	z-index:1002;
+	overflow: auto;
+	padding: 25px;
+}
+
+.ui-helper-hidden-accessible { display:none; }
+
+ul {
+	display: block;
+	position: absolute;
+	background-color: #FFF;
+	font-size: 21px;
+	font-family: Helvetica, Arial;
+}
+
+.tftable tr:hover {
+	background-color:#fff;
+}
+
+.no-js #loader { 
+	display: none;	
+}
+
+.js #loader { 
+	display: block; 
+	position: absolute; 
+	left: 100px; 
+	top: 0; 
+}
+
+#download_btn{
+	font-family: Arial;
+	color: #FFF;
+	font-size: 20px;
+	background: #2A2C2B;
+	text-decoration: none;
+	position: relative;
+	margin-top: 5px;
+	vertical-align: top;
+	width: 100%;
+	height: 40px;
+	padding: 0;
+	text-align: center;
+	border: none;
+	vertical-align: middle
+}
+
+.preloading {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url("http://cdnjs.cloudflare.com/ajax/libs/file-uploader/3.7.0/processing.gif") center no-repeat #fff;
+}
+
+.sidebar-toggle {
+  position: absolute;
+  /*top: 2px;*/
+  right: 4px;
+  width: 20px;
+  height: 20px;
+  background: black;
+  background-image: url("http://i.imgur.com/jSB7QPW.png")
+}
+
+#sidebar {
+  position: absolute;
+  top:0;
+  width: 175px;
+  color: black;
+  margin-left: -150px;
+  height: 100%;
+}
+
+.sidebar-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: 150px;
+  border-right: 1px solid #333;
+  font-size: 14px;
+}
+
+.sidebar-list li {
+  padding: 5px;
+  border-bottom: 1px solid #333;
+}
