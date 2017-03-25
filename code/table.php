@@ -72,21 +72,66 @@
 							//foreach ($title_words as $title_word) {
 							//	echo '<a href="cloud.php?query='.preg_replace('/[^a-z0-9]+/i', '', $title_word).'">'.$title_word.' </a>';
 							//}
-							$abstract_words = explode(' ', $paper->abstract); 
-							$updated_abstract = "";
-							foreach ($abstract_words as $abstract_word) {
-								if ($abstract_word === 'the') {
-									$explode_key_word = explode('', $abstract_word);
-									$abstract_word = "";
-									foreach($explode_key_word as $letter) {
-										$abstract_word = $abstract_word . $letter . '\u0332'; 
-									}  
-									//$abstract_word = $abstract_word . '\u0332'; 
-								}//$updated_abstract 
-								$updated_abstract = $updated_abstract . $abstract_word . " "; 
-							}
+							echo '<link href="assets/stylesheets/modal.css" rel="stylesheet">';
+							// $abstract_words = explode(' ', $paper->abstract); 
+							// $updated_abstract = "";
+							// foreach ($abstract_words as $abstract_word) {
+							// 	if ($abstract_word === 'the') {
+							// 		//alert("the"); 
+							// 		$abstract_word = '<span class="highlight">' . $abstract_word . '</span>';  
+							// 		//$abstract_word = $abstract_word . '\u0332'; 
+							// 	}//$updated_abstract 
+							// 	$updated_abstract = $updated_abstract . $abstract_word . " "; 
+							// }
+							
+							echo '<!-- The Modal -->
+								<div id="myModal" class="modal">
+
+								  <!-- Modal content -->
+								  <div class="modal-content">
+								    <span class="close">&times;</span>
+								    <p id="abstract_section">' . $paper->abstract . '</p>
+								  </div>
+
+								</div>';
+							echo '<script> 
+								var modal = document.getElementById("myModal"); 
+								var span = document.getElementsByClassName("close")[0]; 
+								span.onclick = function() {
+									modal.style.display = "none"; 
+								}
+
+								window.onclick = function(event) {
+									if (event.target == modal) {
+										modal.style.display = "none"; 
+									}
+								}
+							</script>'; 
+							
 							echo '<button onclick="openPopup()">'.$paper->title.'</button>';
-							echo "<script> function openPopup() { alert('".$updated_abstract."');} </script>"; 
+							echo '<script> function openPopup() 
+								{
+									modal.style.display = "block";
+									var abstractSection = document.getElementById("abstract_section");
+									var updated_abstract = "";
+									var unedittedAbstract = abstractSection.innerHTML;
+									var explodedStr = unedittedAbstract.split(" ");
+									for (var word in explodedStr) {
+										if (explodedStr[word] === "the") {
+											updated_abstract = updated_abstract;
+											updated_abstract += "<span class=\'highlight\'>";
+											updated_abstract += explodedStr[word];
+											updated_abstract += "</span>";
+											updated_abstract += " "; 
+										} else {
+											updated_abstract = updated_abstract + explodedStr[word] + " ";
+										}
+									 	
+									}
+									abstract_section.innerHTML = updated_abstract;  
+								} 
+
+								</script>'; 
 							//echo '<div>'.$paper->title.' </div>'; 
 							echo '</td>';
 							echo '<td>';
