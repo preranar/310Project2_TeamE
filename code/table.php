@@ -68,10 +68,26 @@
 						<?php foreach ($WC->papers as $key => $paper) {
 							echo '<tr><td>'.$paper->countWord($WC->query).'</td>';
 							echo '<td>';
-							$title_words = explode(' ', $paper->title);
-							foreach ($title_words as $title_word) {
-								echo '<a href="cloud.php?query='.preg_replace('/[^a-z0-9]+/i', '', $title_word).'">'.$title_word.' </a>';
+							//$title_words = explode(' ', $paper->title);
+							//foreach ($title_words as $title_word) {
+							//	echo '<a href="cloud.php?query='.preg_replace('/[^a-z0-9]+/i', '', $title_word).'">'.$title_word.' </a>';
+							//}
+							$abstract_words = explode(' ', $paper->abstract); 
+							$updated_abstract = "";
+							foreach ($abstract_words as $abstract_word) {
+								if ($abstract_word === 'the') {
+									$explode_key_word = explode('', $abstract_word);
+									$abstract_word = "";
+									foreach($explode_key_word as $letter) {
+										$abstract_word = $abstract_word . $letter . '\u0332'; 
+									}  
+									//$abstract_word = $abstract_word . '\u0332'; 
+								}//$updated_abstract 
+								$updated_abstract = $updated_abstract . $abstract_word . " "; 
 							}
+							echo '<button onclick="openPopup()">'.$paper->title.'</button>';
+							echo "<script> function openPopup() { alert('".$updated_abstract."');} </script>"; 
+							//echo '<div>'.$paper->title.' </div>'; 
 							echo '</td>';
 							echo '<td>';
 							$author_words = preg_split('/([;])/', $paper->author_string, -1, PREG_SPLIT_DELIM_CAPTURE);
