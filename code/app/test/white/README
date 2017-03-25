@@ -1,0 +1,3 @@
+To run unit tests:
+./test.sh > output
+The detailed results of each test can be found in coverage/TESTNAME/index.html

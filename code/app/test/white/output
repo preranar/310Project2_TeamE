@@ -1,0 +1,54 @@
+Running Test APITest.php
+﻿PHPUnit 4.5.0 by Sebastian Bergmann and contributors.
+
+.....
+
+Time: 8.37 seconds, Memory: 14.75Mb
+
+OK (5 tests, 10 assertions)
+
+Running Test BibliographyTest.php
+PHPUnit 4.5.0 by Sebastian Bergmann and contributors.
+
+.............
+
+Time: 8.64 seconds, Memory: 14.75Mb
+
+OK (13 tests, 24 assertions)
+
+Running Test PaperTest.php
+PHPUnit 4.5.0 by Sebastian Bergmann and contributors.
+
+....
+
+Time: 8.62 seconds, Memory: 14.50Mb
+
+OK (4 tests, 35 assertions)
+
+Running Test SearchIEEETest.php
+PHPUnit 4.5.0 by Sebastian Bergmann and contributors.
+
+........
+
+Time: 9.33 seconds, Memory: 14.75Mb
+
+OK (8 tests, 57 assertions)
+
+Running Test WC_WordTest.php
+PHPUnit 4.5.0 by Sebastian Bergmann and contributors.
+
+.
+
+Time: 5.46 seconds, Memory: 10.50Mb
+
+OK (1 test, 3 assertions)
+
+Running Test WordCloudTest.php
+PHPUnit 4.5.0 by Sebastian Bergmann and contributors.
+
+..........
+
+Time: 10.88 seconds, Memory: 15.75Mb
+
+OK (10 tests, 825 assertions)
+
