@@ -145,7 +145,7 @@ class WordCloud {
 			$color = $this->words[$word]->color;
 			$word = strip_tags($word);
 			$word = preg_replace('/[^A-Za-z0-9\-]/', '', $word); 
-			array_push($cloud, "<a href='/cloud.php?query={$word}'><span style=\"font-size: {$font_size}em; color: {$color};\">$word</span></a> ");
+			array_push($cloud, "<a href='/table.php?query={$word}'><span style=\"font-size: {$font_size}em; color: {$color};\">$word</span></a> ");
 			$tags++;
 			if ($tags >= WordCloud::MAXWORDS) {
 				break;
