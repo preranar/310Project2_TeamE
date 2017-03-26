@@ -66,6 +66,7 @@
 						</thead>
 						<tbody>
 						<?php foreach ($WC->papers as $key => $paper) {
+							$WC->query = $_GET['query'];
 							echo '<tr><td>'.$paper->countWord($WC->query).'</td>';
 							echo '<td>';
 							//$title_words = explode(' ', $paper->title);
