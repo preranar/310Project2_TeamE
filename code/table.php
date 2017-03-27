@@ -85,6 +85,7 @@
 									
 							}
 						foreach ($WC->papers as $key => $paper) {
+							$WC->query = $_GET['query'];
 							echo '<script> console.log("Abstract: ' . $paper->abstract . '"); </script> ';
 							$ab = $paper->abstract;
 							echo '<script> console.log("Abs: ' . $ab . '"); </script> ';
