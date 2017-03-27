@@ -34,9 +34,21 @@
 					<a href="./index.php"><img src="assets/images/home.png" height="35%" width="35%" /></a>
 				</div>
 				<?php
-					if (isset($WC)) {
+
+					if (isset($WC)) { 
+						// try {
+						// 	$WC->generateWC();
+						// }
+						// catch (Exception $e) {
+						// }
+						$query = $_GET['query'];
+
 						try {
-							$WC->generateWC();
+							$WC = new WordCloud($query);
+							
+							 $WC->generateCloud(new IEEE());
+							 $_SESSION['WC'] = $WC;
+							 $WC->generateWC();
 						}
 						catch (Exception $e) {
 						}
@@ -65,7 +77,17 @@
 							</tr>
 						</thead>
 						<tbody>
-						<?php foreach ($WC->papers as $key => $paper) {
+						<?php 
+						$papers = $WC->getPapers(new IEEE());
+							foreach($papers as $paper) {
+								$p = implode('|', $paper); 
+									echo '<script> console.log("Paper title: ' . $p . '"); </script> ';
+									
+							}
+						foreach ($WC->papers as $key => $paper) {
+							echo '<script> console.log("Abstract: ' . $paper->abstract . '"); </script> ';
+							$ab = $paper->abstract;
+							echo '<script> console.log("Abs: ' . $ab . '"); </script> ';
 							echo '<tr><td>'.$paper->countWord($WC->query).'</td>';
 							echo '<td>';
 							//$title_words = explode(' ', $paper->title);
@@ -83,22 +105,28 @@
 							// 	}//$updated_abstract 
 							// 	$updated_abstract = $updated_abstract . $abstract_word . " "; 
 							// }
+
+							$beg = substr($paper->pdf, 0, 26); 
+							$end = substr($paper->pdf, 26); 
+							$good = $beg . '.libproxy2.usc.edu' . $end; 
 							
 							echo '<!-- The Modal -->
-								<div id="myModal" class="modal">
+								<div id=' . "\"myModal" . $ab . "\"" . 'class="modal">
 
 								  <!-- Modal content -->
 								  <div class="modal-content">
-								    <span class="close">&times;</span>
-								    <p id="abstract_section">' . $paper->abstract . '</p>
+								    <span id='. "\"close" . $ab . "\"" . ' class = "close">&times;</span>
+								    <p id='. "\"abstract_section" . $ab . "\"" . '>' . $ab . '</p>
+								    <button id='. "\"pdfdownload" . $ab . "\"" . ' onclick="openPDF()">'.$good . '</button>
 								  </div>
 
 								</div>';
 							echo '<script> 
-								var modal = document.getElementById("myModal"); 
-								var span = document.getElementsByClassName("close")[0]; 
+								var modal = document.getElementById(' . "\"myModal" . $ab . "\"" . '); 
+								var span = document.getElementById('. "\"close" . $ab . "\"" . '); 
 								span.onclick = function() {
-									modal.style.display = "none"; 
+									var m = document.getElementById(' . "\"myModal" . $ab . "\"" . '); 
+									m.style.display = "none"; 
 								}
 
 								window.onclick = function(event) {
@@ -106,18 +134,39 @@
 										modal.style.display = "none"; 
 									}
 								}
+
+								function openPDF() {
+									var link = document.createElement("a");
+									link.download = "test.jsp";
+									link.target = "_blank";
+									link.href = document.getElementById('. "\"pdfdownload" . $ab . "\"" . ' ).innerHTML;
+									document.body.appendChild(link);
+									link.click();
+									document.body.removeChild(link);
+									delete link; 
+								}
+
+
+
 							</script>'; 
 							
-							echo '<button onclick="openPopup()">'.$paper->title.'</button>';
-							echo '<script> function openPopup() 
+							echo '<button id='. "\"button" . $ab . "\"" . '>'.$paper->title.'</button>';
+							echo '<script> 
+							var b = document.getElementById('. "\"button" . $ab . "\"" . ');
+
+							b.onclick = function() 
 								{
-									modal.style.display = "block";
-									var abstractSection = document.getElementById("abstract_section");
+									var m = document.getElementById(' . "\"myModal" . $ab . "\"" . '); 
+									m.style.display = "block";
+									var abstractSection = document.getElementById('. "\"abstract_section" . $ab . "\"" . ');
+									console.log("This is the abstract: " + abstractSection.innerHTML); 
 									var updated_abstract = "";
 									var unedittedAbstract = abstractSection.innerHTML;
 									var explodedStr = unedittedAbstract.split(" ");
 									for (var word in explodedStr) {
-										if (explodedStr[word] === "the") {
+										var w = explodedStr[word];
+										if (w.indexOf('."\"". $query . "\"".') != -1) {
+										//if (explodedStr[word] === '."\"". $query . "\"".') {
 											updated_abstract = updated_abstract;
 											updated_abstract += "<span class=\'highlight\'>";
 											updated_abstract += explodedStr[word];
@@ -128,13 +177,16 @@
 										}
 									 	
 									}
-									abstract_section.innerHTML = updated_abstract;  
+									console.log(updated_abstract); 
+									abstractSection.innerHTML = updated_abstract;  
 								} 
 
 								</script>'; 
 							//echo '<div>'.$paper->title.' </div>'; 
 							echo '</td>';
 							echo '<td>';
+							//echo $paper->authors;
+							//echo implode(" ", $paper->authors); 
 							$author_words = preg_split('/([;])/', $paper->author_string, -1, PREG_SPLIT_DELIM_CAPTURE);
 							foreach ($author_words as $author_word) {
 								if ($author_word!==';') {
@@ -165,7 +217,13 @@
 							"class='white_content light'>".$paper->bibtex->bibtex."<a class='close_link' href='javascript:void(0)' ".
 							"onclick=\"document.getElementById('bib-light-".$key."').style.display='none';".
 							"document.getElementById('bib-fade-".$key."').style.display='none'\">Close</a></div><div id='bib-fade-".$key."' class='black_overlay'></div></td>";
-							echo '<td><a href="'.$paper->pdf.'" target=\'_blank\'">PDF</a></td></tr>';
+							 
+							$pattern = '/org//';
+							$replacement = 'org.libproxy2.usc.edu/';
+							$replaced = preg_replace($pattern, $replacement, $string); 
+							echo '<td><a href="'.$good.'" target=\'_blank\'"> PDF </a></td></tr>';
+							//echo '<td><a href="'.$good.'" download>PDF</a></td></tr>';
+							//echo '<td><a href="https://www.w3schools.com/css/trolltunga.jpg" download>PDF</a></td></tr>';
 						}
 						?>
 						</tbody>
