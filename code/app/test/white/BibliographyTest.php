@@ -1,7 +1,8 @@
 <?php
 require_once('../../Bibliography.php');
+use PHPUnit\Framework\TestCase;
 
-class BibliographyTest extends PHPUnit_Framework_TestCase {	
+class BibliographyTest extends TestCase {	
 	public static $coverage;
 	
 	protected $from = 'IEEE';
@@ -17,36 +18,36 @@ class BibliographyTest extends PHPUnit_Framework_TestCase {
 	protected $affiliations = 'affiliations';
 	protected $publisher = 'publisher';
 	
-	/**
-	 * @codeCoverageIgnore
-	 */
-	public static function setUpBeforeClass() {
-		BibliographyTest::$coverage = new PHP_CodeCoverage();
-	}
+	// /**
+	//  * @codeCoverageIgnore
+	//  */
+	// public static function setUpBeforeClass() {
+	// 	BibliographyTest::$coverage = new PHP_CodeCoverage();
+	// }
 	
-	/**
-	 * @codeCoverageIgnore
-	 */
-	public function setUp() {
-		BibliographyTest::$coverage->start($this);
-	}
+	// /**
+	//  * @codeCoverageIgnore
+	//  */
+	// public function setUp() {
+	// 	BibliographyTest::$coverage->start($this);
+	// }
 	
-	/**
-	 * @codeCoverageIgnore
-	 */
-	public function tearDown() {
-		BibliographyTest::$coverage->stop();
-	}
-	/**
-	 * @codeCoverageIgnore
-	 */
-	public static function tearDownAfterClass() {
-		$writer = new PHP_CodeCoverage_Report_Clover;
-		$writer->process(BibliographyTest::$coverage, 'coverage/BibliographyTest.xml');
+	// /**
+	//  * @codeCoverageIgnore
+	//  */
+	// public function tearDown() {
+	// 	BibliographyTest::$coverage->stop();
+	// }
+	// /**
+	//  * @codeCoverageIgnore
+	//  */
+	// public static function tearDownAfterClass() {
+	// 	$writer = new PHP_CodeCoverage_Report_Clover;
+	// 	$writer->process(BibliographyTest::$coverage, 'coverage/BibliographyTest.xml');
 		
-		$writer = new PHP_CodeCoverage_Report_HTML;
-		$writer->process(BibliographyTest::$coverage, 'coverage/BibliographyTest');
-	}
+	// 	$writer = new PHP_CodeCoverage_Report_HTML;
+	// 	$writer->process(BibliographyTest::$coverage, 'coverage/BibliographyTest');
+	// }
 	
 	/**
 	 * Sanity check

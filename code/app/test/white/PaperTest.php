@@ -1,7 +1,8 @@
 <?php
 require_once('../../Paper.php');
-
-class PaperTest extends PHPUnit_Framework_TestCase {	
+use PHPUnit\Framework\TestCase;
+ 
+class PaperTest extends TestCase {	
 	public static $coverage;
 	
 	protected $title = 'title';
@@ -16,36 +17,36 @@ class PaperTest extends PHPUnit_Framework_TestCase {
 	protected $from = 'IEEE';
 	protected $py = 'py';
 	
-	/**
-	 * @codeCoverageIgnore
-	 */
-	public static function setUpBeforeClass() {
-		PaperTest::$coverage = new PHP_CodeCoverage();
-	}
+	// /**
+	//  * @codeCoverageIgnore
+	//  */
+	// public static function setUpBeforeClass() {
+	// 	PaperTest::$coverage = new PHP_CodeCoverage();
+	// }
 	
-	/**
-	 * @codeCoverageIgnore
-	 */
-	public function setUp() {
-		PaperTest::$coverage->start($this);
-	}
+	// /**
+	//  * @codeCoverageIgnore
+	//  */
+	// public function setUp() {
+	// 	PaperTest::$coverage->start($this);
+	// }
 	
-	/**
-	 * @codeCoverageIgnore
-	 */
-	public function tearDown() {
-		PaperTest::$coverage->stop();
-	}
-	/**
-	 * @codeCoverageIgnore
-	 */
-	public static function tearDownAfterClass() {
-		$writer = new PHP_CodeCoverage_Report_Clover;
-		$writer->process(PaperTest::$coverage, 'coverage/PaperTest.xml');
+	// /**
+	//  * @codeCoverageIgnore
+	//  */
+	// public function tearDown() {
+	// 	PaperTest::$coverage->stop();
+	// }
+	// /**
+	//  * @codeCoverageIgnore
+	//  */
+	// public static function tearDownAfterClass() {
+	// 	$writer = new PHP_CodeCoverage_Report_Clover;
+	// 	$writer->process(PaperTest::$coverage, 'coverage/PaperTest.xml');
 		
-		$writer = new PHP_CodeCoverage_Report_HTML;
-		$writer->process(PaperTest::$coverage, 'coverage/PaperTest');
-	}
+	// 	$writer = new PHP_CodeCoverage_Report_HTML;
+	// 	$writer->process(PaperTest::$coverage, 'coverage/PaperTest');
+	// }
 	
 	/**
 	 * Test creation of a paper
