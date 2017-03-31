@@ -32,7 +32,7 @@
 						<input id="number-box" type="number" min="1" max ="100" value="1" autofocus required>
 					</div>
 					<div class="inner-wrap">
-					   <button class="button" type="submit" class="Submit">ǫᴜᴇʀʏ</button>		
+					   <button class="button" id="search-button" type="submit" class="Submit">ǫᴜᴇʀʏ</button>		
 					</div>
 				</form>
 
