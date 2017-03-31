@@ -24,7 +24,16 @@ class WordCloud {
 	 */
 	function generateCloud(IEEE $IEEE) {
 		$papers = getResults(null, $this->query, $IEEE);
+		// foreach($papers as $paper) {
+		// 	$p = implode('', $paper); 
+		// 		echo '<script> console.log("Paper title: ' . $p . '"); </script> ';
+				
+		// 	}
 		$this->generate($papers);
+	}
+
+	function getPapers(IEEE $IEEE) {
+		return getResults(null, $this->query, $IEEE);
 	}
 
 	function generate($papers) {
@@ -58,8 +67,10 @@ class WordCloud {
 	//   ]
 	// 
 	function mergeData($papers) {
+		echo '<script> console.log("merging"); </script>'; 
 		try {
 			foreach($papers as $paper) {
+				echo '<script> console.log("' . $paper->title . '"); </script> ';
 				$new_paper = new Paper($paper);
 				$this->papers[] = $new_paper;
 			}
@@ -108,6 +119,8 @@ class WordCloud {
 	// Takes the current $words, and generates
 	// a word cloud utilizing $maxNumWords
 	function generateWC() {
+
+						 
 		$words = $this->getFreqArray($this->words);
 		$tags = 0;
 		$cloud = array();
@@ -145,7 +158,7 @@ class WordCloud {
 			$color = $this->words[$word]->color;
 			$word = strip_tags($word);
 			$word = preg_replace('/[^A-Za-z0-9\-]/', '', $word); 
-			array_push($cloud, "<a href='/table.php?query={$word}'><span style=\"font-size: {$font_size}em; color: {$color};\">$word</span></a> ");
+			array_push($cloud, "<a href='/table.php?query={$word}' id='$word-cloud-button'><span style=\"font-size: {$font_size}em; color: {$color};\">$word</span></a> ");
 			$tags++;
 			if ($tags >= WordCloud::MAXWORDS) {
 				break;

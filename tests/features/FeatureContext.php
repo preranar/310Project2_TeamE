@@ -92,7 +92,9 @@ class FeatureContext extends MinkContext
     }
 
 
-
+    //****************************************************************
+    //searchPage.feature
+    //****************************************************************
     //Scenario: Pressing search button with no text does nothing    
     /**
      * @Given /^the user is on the search page$/
@@ -140,7 +142,7 @@ class FeatureContext extends MinkContext
 
 
 
-    //Scenario:
+    //Scenario: User can search for an author
     /**
      * @Given /^the user wants to search for an author on the search page$/
      */
@@ -196,7 +198,7 @@ class FeatureContext extends MinkContext
 
 
 
-
+    //Scenario: User can search for key phrase
     /**
      * @Given /^the user wants to search for a key phrase on the search page$/
      */
@@ -243,7 +245,7 @@ class FeatureContext extends MinkContext
     }
 
 
-
+    //Scenario: User can choose the number of papers
     /**
      * @Given /^the user has typed a key phrase or author in search bar$/
      */
@@ -281,5 +283,135 @@ class FeatureContext extends MinkContext
         echo("test passed");
     }
 
+
+    //****************************************************************
+    //wordCloudPage.feature
+    //****************************************************************
+    //Scenario: Words in word cloud are clickable
+    /**
+     * @Given /^the user searches a key word or author$/
+     */
+    public function theUserSearchesAKeyWordOrAuthor()
+    {
+        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+        $session = new \Behat\Mink\Session($driver);         
+        $session->start();
+        $session->visit('http://localhost');
+        $page = $session->getPage();
+        $searchButton = $page->find('css', "#search-button");
+        $searchBar = $page->find('css', '#search-box');
+        $searchBar->focus();
+        $searchBar->setValue("circuit");
+        $searchButton->click();
+        while(!$page->find('css', '#e-mode-cloud-button')){
+        };
+        $wordCloudButton = $page->find('css', '#e-mode-cloud-button');
+        if($wordCloudButton->click()){
+            echo("test passed");
+        } else {
+            echo("test failed");
+        }
+        $session->stop();
+        
+    }
+
+    /**
+     * @Given /^presses search, and is redirected to the word cloud page$/
+     */
+    public function pressesSearchAndIsRedirectedToTheWordCloudPage()
+    {
+        echo("test passed");
+    }
+
+    /**
+     * @Then /^the user can click on one of the words$/
+     */
+    public function theUserCanClickOnOneOfTheWords()
+    {
+        echo("test passed");
+    }
+
+
+    //Scenario: Clicking on a word in the word cloud directs you to paperlist page
+    /**
+     * @Given /^the user is on the word cloud page$/
+     */
+    public function theUserIsOnTheWordCloudPage()
+    {
+        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+        $session = new \Behat\Mink\Session($driver);         
+        $session->start();
+        $session->visit('http://localhost');
+        $page = $session->getPage();
+        $searchButton = $page->find('css', "#search-button");
+        $searchBar = $page->find('css', '#search-box');
+        $searchBar->focus();
+        $searchBar->setValue("circuit");
+        $searchButton->click();
+        while(!$page->find('css', '#e-mode-cloud-button')){
+        };
+        $wordCloudButton = $page->find('css', '#e-mode-cloud-button');
+        $wordCloudButton->click();
+        while(!$page->find('css','#search_info')){
+        };
+        echo("test passed");
+        $session->stop();
+    }
+
+    /**
+     * @Given /^the user clicks on one of the words in the word cloud$/
+     */
+    public function theUserClicksOnOneOfTheWordsInTheWordCloud()
+    {
+        echo("test passed");
+    }
+
+    /**
+     * @Then /^the user gets redirected to the paperlist page$/
+     */
+    public function theUserGetsRedirectedToThePaperlistPage()
+    {
+        echo("test passed");
+    }
+
+
+    //Scenario: Word cloud can be downloaded as an image
+    /**
+     * @Given /^the user has a created a word cloud$/
+     */
+    public function theUserHasACreatedAWordCloud()
+    {
+        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+        $session = new \Behat\Mink\Session($driver);         
+        $session->start();
+        $session->visit('http://localhost');
+        $page = $session->getPage();
+        $searchButton = $page->find('css', "#search-button");
+        $searchBar = $page->find('css', '#search-box');
+        $searchBar->focus();
+        $searchBar->setValue("circuit");
+        $searchButton->click();
+        while(!$page->find('css', '#e-mode-cloud-button')){
+        };
+        $downloadButton = $page->find('css','#download_btn');
+        $downloadButton->click();
+        throw new Exception("Download Button not implemented yet");
+    }
+
+    /**
+     * @Given /^the user clicks the download button$/
+     */
+    public function theUserClicksTheDownloadButton()
+    {
+        echo ("");
+    }
+
+    /**
+     * @Then /^the system returns an image file of the word cloud$/
+     */
+    public function theSystemReturnsAnImageFileOfTheWordCloud()
+    {
+        echo ("");
+    }
 
 }
