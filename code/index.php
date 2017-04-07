@@ -20,7 +20,7 @@
 		<div class="container">			
 			<div class="wrapper" id="home-wrapper">
 				<div class="header">
-					<a href="#"><img src="assets/images/fusion.png" height="35%" width="35%" /></a>
+					<a href="#"><h1 class="title-header">Cloud 9++</h1><!-- <img src="assets/images/fusion.png" height="35%" width="35%" /> --></a>
 				</div>
 				<form  id="fusion_search_form" action="./cloud.php">	
 					<div>
@@ -32,7 +32,7 @@
 						<input id="number-box" type="number" min="1" max ="100" value="1" autofocus required>
 					</div>
 					<div class="inner-wrap">
-					   <button class="button" id="search-button" type="submit" class="Submit">ǫᴜᴇʀʏ</button>		
+					   <button id = "search-button" class="button" type="submit" class="Submit">ǫᴜᴇʀʏ</button>		
 					</div>
 				</form>
 
@@ -43,26 +43,26 @@
 <script type="text/javascript">
 	<?php echo showHistoryScript(); ?>
 	var googleAutoComplete = function(req, res) {
-        $.getJSON("http://suggestqueries.google.com/complete/search?callback=?",
-			{ "q":req.term,
-              "client":"firefox" }
-        , function (data) {
-	        var suggestions = [];
-	        $.each(data[1], function(key, val) {
-	            suggestions.push(val);
-	        });
-	        suggestions.length = 5;
-	        console.log(suggestions);
-			res(suggestions);
-	    });
+   //      $.getJSON("http://suggestqueries.google.com/complete/search?callback=?",
+			// { "q":req.term,
+   //            "client":"firefox" }
+   //      , function (data) {
+	  //       var suggestions = [];
+	  //       $.each(data[1], function(key, val) {
+	  //           suggestions.push(val);
+	  //       });
+	  //       suggestions.length = 5;
+	  //       console.log(suggestions);
+			// res(suggestions);
+	  //   });
 	}
 	$(document).ready(function () {
-	    $("#search-box").autocomplete({
-	        source: googleAutoComplete,
-	        messages: {
-		        noResults: '',
-		        results: function() {}
-		    }
-		});
+	 //    $("#search-box").autocomplete({
+	 //        source: googleAutoComplete,
+	 //        messages: {
+		//         noResults: '',
+		//         results: function() {}
+		//     }
+		// });
 	});
 </script>

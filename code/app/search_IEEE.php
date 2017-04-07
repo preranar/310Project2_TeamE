@@ -14,6 +14,8 @@ function getPaperResults($author, $keyword, $limit = 10) {
 //If you want to use your own IEEE
 function getResults($author, $keyword, $IEEE, $limit = 10) {
 	
+
+	//echo '<script> console.log("Getting results for: ' . $keyword . '"); </script> ';
 	if ((!$author && !$keyword) || !$limit) return null;		
 	
 	if ($author){
@@ -29,6 +31,8 @@ function getResults($author, $keyword, $IEEE, $limit = 10) {
 	}
 	
 	foreach ($results['document'] as $paper) {
+		$p = implode('', $paper); 
+		//echo '<script> console.log("Getting results for: ' . $p . '"); </script> ';
 		// if (!isset($paper['authors']) || 
 		// 	!isset($paper['title']) || 
 		// 	!isset($paper['pubtitle']) || 

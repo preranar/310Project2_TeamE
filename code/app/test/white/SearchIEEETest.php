@@ -1,7 +1,6 @@
 <?php
 
 require_once('../../search_IEEE.php');
-use PHPUnit\Framework\TestCase;
 
 class MockIEEE extends IEEE
 {
@@ -107,40 +106,40 @@ class EmptyIEEE extends IEEE
 	}
 }
 
-class SearchIEEETest extends TestCase
+class SearchIEEETest extends PHPUnit_Framework_TestCase
 {
-	// public static $coverage;
+	public static $coverage;
 	
-	// /**
-	//  * @codeCoverageIgnore
-	//  */
-	// public static function setUpBeforeClass() {
-	// 	SearchIEEETest::$coverage = new PHP_CodeCoverage();
-	// }
+	/**
+	 * @codeCoverageIgnore
+	 */
+	public static function setUpBeforeClass() {
+		SearchIEEETest::$coverage = new PHP_CodeCoverage();
+	}
 	
-	// /**
-	//  * @codeCoverageIgnore
-	//  */
-	// public function setUp() {
-	// 	SearchIEEETest::$coverage->start($this);
-	// }
+	/**
+	 * @codeCoverageIgnore
+	 */
+	public function setUp() {
+		SearchIEEETest::$coverage->start($this);
+	}
 	
-	// /**
-	//  * @codeCoverageIgnore
-	//  */
-	// public function tearDown() {
-	// 	SearchIEEETest::$coverage->stop();
-	// }
-	// /**
-	//  * @codeCoverageIgnore
-	//  */
-	// public static function tearDownAfterClass() {
-	// 	$writer = new PHP_CodeCoverage_Report_Clover;
-	// 	$writer->process(SearchIEEETest::$coverage, 'coverage/SearchIEEETest.xml');
+	/**
+	 * @codeCoverageIgnore
+	 */
+	public function tearDown() {
+		SearchIEEETest::$coverage->stop();
+	}
+	/**
+	 * @codeCoverageIgnore
+	 */
+	public static function tearDownAfterClass() {
+		$writer = new PHP_CodeCoverage_Report_Clover;
+		$writer->process(SearchIEEETest::$coverage, 'coverage/SearchIEEETest.xml');
 		
-	// 	$writer = new PHP_CodeCoverage_Report_HTML;
-	// 	$writer->process(SearchIEEETest::$coverage, 'coverage/SearchIEEETest');
-	// }
+		$writer = new PHP_CodeCoverage_Report_HTML;
+		$writer->process(SearchIEEETest::$coverage, 'coverage/SearchIEEETest');
+	}
 	
 	/**
 	 * Test getResults
@@ -157,11 +156,11 @@ class SearchIEEETest extends TestCase
 		$this->assertNotEmpty($result[0]['authors']);
 		$this->assertEquals($authors, $result[0]['authors']);
 		$this->assertEquals($title, $result[0]['title']);
-		//$this->assertContains("Practical Database", $result[0]['pubtitle']);
-		//$this->assertNotContains("Happiness", $result[0]['pubtitle']);
+		$this->assertContains("Practical Database", $result[0]['pubtitle']);
+		$this->assertNotContains("Happiness", $result[0]['pubtitle']);
 		$this->assertEquals($pdf, $result[0]['pdf']);
-		//$this->assertContains("Components", $result[0]['abstract']);
-		//$this->assertNotContains("Happiness", $result[0]['abstract']);
+		$this->assertContains("Components", $result[0]['abstract']);
+		$this->assertNotContains("Happiness", $result[0]['abstract']);
 		$this->assertArrayHasKey("from", $result[0]);
 		$this->assertEquals("IEEE", $result[0]['from']);
 	}
@@ -195,11 +194,11 @@ class SearchIEEETest extends TestCase
 		$this->assertNotEmpty($result[0]['authors']);
 		$this->assertEquals($authors, $result[0]['authors']);
 		$this->assertEquals($title, $result[0]['title']);
-		//$this->assertContains("Practical Database", $result[0]['pubtitle']);
-		//$this->assertNotContains("Happiness", $result[0]['pubtitle']);
+		$this->assertContains("Practical Database", $result[0]['pubtitle']);
+		$this->assertNotContains("Happiness", $result[0]['pubtitle']);
 		$this->assertEquals($pdf, $result[0]['pdf']);
-		//$this->assertContains("Components", $result[0]['abstract']);
-		//$this->assertNotContains("Happiness", $result[0]['abstract']);
+		$this->assertContains("Components", $result[0]['abstract']);
+		$this->assertNotContains("Happiness", $result[0]['abstract']);
 		$this->assertArrayHasKey("from", $result[0]);
 		$this->assertEquals("IEEE", $result[0]['from']);
 		
@@ -224,11 +223,11 @@ class SearchIEEETest extends TestCase
 		$this->assertNotEmpty($result[0]['authors']);
 		$this->assertEquals($authors, $result[0]['authors']);
 		$this->assertEquals($title, $result[0]['title']);
-		//$this->assertContains("Practical Database", $result[0]['pubtitle']);
-		//$this->assertNotContains("Happiness", $result[0]['pubtitle']);
+		$this->assertContains("Practical Database", $result[0]['pubtitle']);
+		$this->assertNotContains("Happiness", $result[0]['pubtitle']);
 		$this->assertEquals($pdf, $result[0]['pdf']);
-		//$this->assertContains("Components", $result[0]['abstract']);
-		//$this->assertNotContains("Happiness", $result[0]['abstract']);
+		$this->assertContains("Components", $result[0]['abstract']);
+		$this->assertNotContains("Happiness", $result[0]['abstract']);
 		$this->assertArrayHasKey("from", $result[0]);
 		$this->assertEquals("IEEE", $result[0]['from']);
 		
@@ -253,11 +252,11 @@ class SearchIEEETest extends TestCase
 		$this->assertNotEmpty($result[0]['authors']);
 		$this->assertEquals($authors, $result[0]['authors']);
 		$this->assertEquals($title, $result[0]['title']);
-		//$this->assertContains("Practical Database", $result[0]['pubtitle']);
-		//$this->assertNotContains("Happiness", $result[0]['pubtitle']);
+		$this->assertContains("Practical Database", $result[0]['pubtitle']);
+		$this->assertNotContains("Happiness", $result[0]['pubtitle']);
 		$this->assertEquals($pdf, $result[0]['pdf']);
-		//$this->assertContains("Components", $result[0]['abstract']);
-		//$this->assertNotContains("Happiness", $result[0]['abstract']);
+		$this->assertContains("Components", $result[0]['abstract']);
+		$this->assertNotContains("Happiness", $result[0]['abstract']);
 		$this->assertArrayHasKey("from", $result[0]);
 		$this->assertEquals("IEEE", $result[0]['from']);
 		
@@ -282,11 +281,11 @@ class SearchIEEETest extends TestCase
 		$this->assertNotEmpty($result[0]['authors']);
 		$this->assertEquals($authors, $result[0]['authors']);
 		$this->assertEquals($title, $result[0]['title']);
-		//$this->assertContains("Practical Database", $result[0]['pubtitle']);
-		//$this->assertNotContains("Happiness", $result[0]['pubtitle']);
+		$this->assertContains("Practical Database", $result[0]['pubtitle']);
+		$this->assertNotContains("Happiness", $result[0]['pubtitle']);
 		$this->assertEquals($pdf, $result[0]['pdf']);
-		//$this->assertContains("Components", $result[0]['abstract']);
-		//$this->assertNotContains("Happiness", $result[0]['abstract']);
+		$this->assertContains("Components", $result[0]['abstract']);
+		$this->assertNotContains("Happiness", $result[0]['abstract']);
 		$this->assertArrayHasKey("from", $result[0]);
 		$this->assertEquals("IEEE", $result[0]['from']);
 		

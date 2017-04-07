@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Fusion - Cloud</title>
+		<title title="source-title">Conference</title>
 		<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
 		<script src="assets/javascript/jquery-latest.js"></script>
 		<script src="assets/javascript/jquery.tablesorter.js"></script>
@@ -36,7 +36,8 @@
 		<div class="container">			
 			<div class="wrapper">
 				<div class="header">
-					<a href="/"><img src="assets/images/home.png" height="35%" width="35%" /></a>
+				<br><br>
+					<!-- <a href="/"><img src="assets/images/home.png" height="35%" width="35%" /></a> -->
 				</div>
 				<div id="source-name">
 					SOURCE 
@@ -99,6 +100,7 @@
 								"document.getElementById('bib-fade-".$key."').style.display='none'\">Close</a></div><div id='bib-fade-".$key."' class='black_overlay'></div></td>";
 								echo '<td><a href="'.$paper->pdf.'" target=\'_blank\' ">PDF</a></td></tr>';
 							}
+							// echo '<script> document.getElementById("source-title").innerHTML = "Conference"</script>';
 						?>
 						</tbody>
 					</table>
