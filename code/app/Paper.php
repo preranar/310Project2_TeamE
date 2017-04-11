@@ -16,6 +16,7 @@ class Paper {
 	public $issue;
 	public $wordCount = array();
 	public $bibtex;
+	public $frequency; 
 
 	function __construct($paper) {
 		// echo json_encode($paper['authors']);
@@ -39,6 +40,7 @@ class Paper {
 		}
 		
 		$this->bibtex = new Bibliography($paper);
+		$this->frequency = -1;
 	}
 
 

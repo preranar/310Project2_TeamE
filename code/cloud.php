@@ -8,11 +8,16 @@
 	} else if (isset($_SESSION['WC'])) {
 		$WC = $_SESSION['WC'];
 	}
+
+	if (isset($WC)) {
+		$query = $_GET['query'];
+
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Fusion - Cloud</title>
+		<title id="title-page"></title>
 		<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 		<script src="assets/javascript/jquery.tablesorter.js"></script>
 		<script src="assets/javascript/html2canvas.js" type="text/javascript"></script>
@@ -34,8 +39,10 @@
 		</div>
 		<div class="container">			
 			<div class="wrapper">
-				<div class="header">
-					<a href="./index.php"><img src="assets/images/home.png" height="35%" width="35%" /></a>
+				<div class="header cloud-title" id = "t2">
+					<!-- <a href="./index.php"><img src="assets/images/home.png" height="35%" width="35%" /></a> -->
+					
+
 				</div>
 				<div id="wordcloud">
 					<?php
@@ -48,14 +55,17 @@
 						} else if (isset($query)) {
 							// This is taken care of in javascript now...
 						}
+
+						echo '<script> document.getElementById("t2").innerHTML = "' . $query . '"</script>';
+						echo '<script> document.getElementById("title-page").innerHTML = "' . $query . '"</script>';
 					?>
 				</div>
-				<div>
+				<!-- <div>
 					<input type="submit" value="View Research Paper Information" class="table-button" onclick="location.href = '/table.php?query=<?php echo $query ?>';">
-				</div>
+				</div> -->
 				<div>
 					<button id="download_btn" onclick="download_wc()">Download Word Cloud</button>
-				</div>
+				</div> 
 			</div>
 		</div>
 	</body>
@@ -74,19 +84,52 @@
 		<?php } ?>
 	});
     var dataUrl;
+
+    // document.getElementById("title-page").innerHTML = <?php echo $query ?>; 
+
     
-    function downloadURI(uri, name) {
-     	var link = document.createElement("a");
-        link.download = name;
-        link.href = uri;
-        link.click();
-    }
+    console.log("\"<?php echo $query ?>\"");
+    
+    // function downloadURI(uri, name) {
+    //  	var link = document.createElement("a");
+    //     link.download = name;
+    //     link.href = uri;
+    //     link.click();
+    // }
    
     function download_wc() {
-		html2canvas(document.getElementById("wordcloud")).
-		then(function(canvas) {
-            dataUrl = canvas.toDataURL(); //get's image string
-            downloadURI(dataUrl, "worcloud.jpg");           
-		});
+		// html2canvas(document.getElementById("wordcloud")).
+		// then(function(canvas) {
+  //           dataUrl = canvas.toDataURL(); //get's image string
+  //           downloadURI(dataUrl, "worcloud.jpg");           
+		// });
+
+		document.getElementById("wordcloud").style.backgroundColor = "white"; 
+		html2canvas(document.getElementById("wordcloud"), {
+    		onrendered: function(canvas) {
+
+    			console.log("entered inner part of fuction");
+    			var dataURL = canvas.toDataURL('image/png');
+    			console.log(dataURL);
+    			var link = document.createElement("a");
+    			link.download = "wordcloudimage.png";
+    			link.href = dataURL;
+    			document.body.appendChild(link);
+    			link.click();
+    			document.body.removeChild(link);
+    			delete link; 
+    			//var url = img.src.replace(/^data:image\/[^;]/, 'data:application/octet-stream');
+    			//console.log(url);
+    			//window.open(url);
+    			console.log("window opened");  
+    			// var ajax = new XMLHttpRequest();
+    			// console.log("check 1");
+    			// ajax.open("POST", 'testSave.php', true);
+    			// console.log("check 2");
+    			// ajax.setRequestHeader('Content-Type', 'application/upload');
+    			// console.log("check 3");
+    			// ajax.send(dataURL);
+    		}
+    	});
 	}
 </script>

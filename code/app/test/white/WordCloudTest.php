@@ -1,10 +1,9 @@
 <?php
 require_once('../../WordCloud.php');
 require_once('SearchIEEETest.php');
-use PHPUnit\Framework\TestCase;
 
-class WordCloudTest extends TestCase {	
-	//public static $coverage;
+class WordCloudTest extends PHPUnit_Framework_TestCase {	
+	public static $coverage;
 	
 	protected $query = 'java';
 	protected $IEEE;
@@ -12,9 +11,9 @@ class WordCloudTest extends TestCase {
 	protected $paper1;
 	protected $paper2;
 	
-	// /**
-	//  * @codeCoverageIgnore
-	//  */
+	/**
+	 * @codeCoverageIgnore
+	 */
 	public function __construct() {
 		$this->IEEE = new MockIEEE();
 		$this->papers = getResults(null, $this->query, $this->IEEE);
@@ -22,36 +21,36 @@ class WordCloudTest extends TestCase {
 		$this->paper2 = new Paper($this->papers[1]);
 	}
 	
-	// /**
-	//  * @codeCoverageIgnore
-	//  */
-	// public static function setUpBeforeClass() {
-	// 	WordCloudTest::$coverage = new PHP_CodeCoverage();
-	// }
+	/**
+	 * @codeCoverageIgnore
+	 */
+	public static function setUpBeforeClass() {
+		WordCloudTest::$coverage = new PHP_CodeCoverage();
+	}
 	
-	// /**
-	//  * @codeCoverageIgnore
-	//  */
-	// public function setUp() {
-	// 	WordCloudTest::$coverage->start($this);
-	// }
+	/**
+	 * @codeCoverageIgnore
+	 */
+	public function setUp() {
+		WordCloudTest::$coverage->start($this);
+	}
 	
-	// /**
-	//  * @codeCoverageIgnore
-	//  */
-	// public function tearDown() {
-	// 	WordCloudTest::$coverage->stop();
-	// }
-	// /**
-	//  * @codeCoverageIgnore
-	//  */
-	// public static function tearDownAfterClass() {
-	// 	$writer = new PHP_CodeCoverage_Report_Clover;
-	// 	$writer->process(WordCloudTest::$coverage, 'coverage/WordCloudTest.xml');
+	/**
+	 * @codeCoverageIgnore
+	 */
+	public function tearDown() {
+		WordCloudTest::$coverage->stop();
+	}
+	/**
+	 * @codeCoverageIgnore
+	 */
+	public static function tearDownAfterClass() {
+		$writer = new PHP_CodeCoverage_Report_Clover;
+		$writer->process(WordCloudTest::$coverage, 'coverage/WordCloudTest.xml');
 		
-	// 	$writer = new PHP_CodeCoverage_Report_HTML;
-	// 	$writer->process(WordCloudTest::$coverage, 'coverage/WordCloudTest');
-	// }
+		$writer = new PHP_CodeCoverage_Report_HTML;
+		$writer->process(WordCloudTest::$coverage, 'coverage/WordCloudTest');
+	}
 	
 	
 	/**
@@ -233,62 +232,62 @@ class WordCloudTest extends TestCase {
 	 * @depends testGenerateCloud
 	 * @depends testFrequencyArray
 	 */
-	// public function testGenerateWC($wordcloud, $words) {
-	// 	$cloud = $wordcloud->generateWC();
+	public function testGenerateWC($wordcloud, $words) {
+		$cloud = $wordcloud->generateWC();
 		
-	// 	// foreach($words as $word => $frq)
-	// 	// {
-	// 	// 	if ($word != "<br>") {
-	// 	// 		//Assert words, colors exist in cloud 
-	// 	// 		$this->assertContains($wordcloud->words[$word]->color, $cloud);
-	// 	// 		$this->assertContains($word, $cloud);
-	// 	// 		$this->assertContains($wordcloud->words[$word]->color . ";\">" . $word, $cloud);
-	// 	// 	}
-	// 	// }
-	// }
+		foreach($words as $word => $frq)
+		{
+			if ($word != "<br>") {
+				//Assert words, colors exist in cloud 
+				$this->assertContains($wordcloud->words[$word]->color, $cloud);
+				$this->assertContains($word, $cloud);
+				$this->assertContains($wordcloud->words[$word]->color . ";\">" . $word, $cloud);
+			}
+		}
+	}
 	
-	// /**
-	//  * Test that the WordCloud will remove the less frequent words
-	//  */
-	// public function testGenerateWCManyWords() {
-	// 	$words = "";
-	// 	for($i = 11; $i < 300; $i++)
-	// 	{
-	// 		$words .= $i . " ";
-	// 		//Adjust frequency slightly
-	// 		if ($i <= 260)
-	// 		{
-	// 			$words .= $i . " ";
-	// 		}
-	// 	}
+	/**
+	 * Test that the WordCloud will remove the less frequent words
+	 */
+	public function testGenerateWCManyWords() {
+		$words = "";
+		for($i = 11; $i < 300; $i++)
+		{
+			$words .= $i . " ";
+			//Adjust frequency slightly
+			if ($i <= 260)
+			{
+				$words .= $i . " ";
+			}
+		}
 		
-	// 	$data = array('Bill Nye' => array(
-	// 			'authors' => 'Bill Nye',
-	// 			'title' => 'I am the science guy',
-	// 			'from' => 'IEEE',
-	// 			'abstract' => $words,
-	// 			'pubtitle' => 'pubtitle',
-	// 			'pdf' => 'pdf',
-	// 			'pubtype' => 'pubtype',
-	// 			'py' => 'py'
-	// 			)
-	// 	);
-	// 	$wordcloud = new WordCloud($this->query);
-	// 	$wordcloud->generate($data);
+		$data = array('Bill Nye' => array(
+				'authors' => 'Bill Nye',
+				'title' => 'I am the science guy',
+				'from' => 'IEEE',
+				'abstract' => $words,
+				'pubtitle' => 'pubtitle',
+				'pdf' => 'pdf',
+				'pubtype' => 'pubtype',
+				'py' => 'py'
+				)
+		);
+		$wordcloud = new WordCloud($this->query);
+		$wordcloud->generate($data);
 		
-	// 	$cloud = $wordcloud->generateWC();
-	// 	// for ($word = 11; $word <= 260; $word++)
-	// 	// {
-	// 	// 	//Assert words exist in cloud
-	// 	// 	$this->assertContains($word . "", $cloud);
-	// 	// }
+		$cloud = $wordcloud->generateWC();
+		for ($word = 11; $word <= 260; $word++)
+		{
+			//Assert words exist in cloud
+			$this->assertContains($word . "", $cloud);
+		}
 		
-	// 	// for ($word = 261; $word < 300; $word++)
-	// 	// {
-	// 	// 	//Assert less popular words not in cloud
-	// 	// 	$this->assertNotContains($word . "", $cloud);
-	// 	// }
-	// }
+		for ($word = 261; $word < 300; $word++)
+		{
+			//Assert less popular words not in cloud
+			$this->assertNotContains($word . "", $cloud);
+		}
+	}
 	
 	/**
 	 * Test that the WordCloud will safely handle having zero words
@@ -308,7 +307,7 @@ class WordCloudTest extends TestCase {
 		$cloud = $wordcloud->generateWC();
 		
 		$this->assertNotEmpty($cloud);
-		//$this->assertNotContains("<br>", $cloud);
+		$this->assertNotContains("<br>", $cloud);
 	}
 }
 ?>

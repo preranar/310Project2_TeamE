@@ -88,6 +88,7 @@ class PdfCrowd {
 		$this->fields['src'] = $src;
 		$uri = $this->api_prefix . "/pdf/convert/html/";
 		$postfields = http_build_query($this->fields, '', '&');
+		echo '<script> console.log("converted"); </script>'; 
 		return $this->http_post($uri, $postfields, $outstream);
 	}
 
