@@ -65,6 +65,7 @@
 				</div> -->
 				<div>
 					<button id="download_btn" onclick="download_wc()">Download Word Cloud</button>
+
 				</div> 
 			</div>
 		</div>

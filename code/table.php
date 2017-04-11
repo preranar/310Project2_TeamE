@@ -28,9 +28,10 @@
 			 alert("Look at newfile.txt! It's there!!!!!");
 		}
 		</script>
+<<<<<<< HEAD
 
 		<script src="sorttable.js"></script>
-	</head>
+			</head>
 	<body>
 		<div class="preloading"></div>
 		<div id="sidebar">
@@ -99,7 +100,10 @@
 							$authorArray = array("author");
 							$titleArray = array("test");
 							$conferenceArray = array("conf");
+<<<<<<< HEAD
 							srand(10); 
+=======
+>>>>>>> 9beafcbde1fa4e64da4a61f8ea9bc38ec845cb1e
 						foreach ($WC->papers as $key => $paper) {
 							$WC->query = $_GET['query'];
 							$frequency = 0;
@@ -119,9 +123,14 @@
 							echo '<script> console.log("Abs: ' . $ab . '"); </script> ';
 							echo '<tr><td>'.$frequency.'</td>';
 							echo '<td>';
+<<<<<<< HEAD
 							array_push($titleArray, $paper->title);
 							
 							array_push($frequencyArray, $frequency . "");
+=======
+							array_push($titleArray, $paper->title); 
+							array_push($frequencyArray, $paper->countWord($WC->query) . "");
+>>>>>>> 9beafcbde1fa4e64da4a61f8ea9bc38ec845cb1e
 							array_push($authorArray, $paper->author_string);
 							array_push($conferenceArray, $paper->source);
 							echo '<script> console.log("array title: ' . $titleArray[sizeof($titleArray)-1] . '"); </script> ';
@@ -282,10 +291,13 @@
 
 					<div class="table-button">
 						<button onclick="createTextFile()"><span class="a-button">ᴇxᴘᴏʀᴛ to text file</span></button>
+<<<<<<< HEAD
 					</div>
 
 					<div class="table-button">
 						<button onclick="searchForCheckedPapers()"><span class="a-button">Search for checked papers</span></button>
+=======
+>>>>>>> 9beafcbde1fa4e64da4a61f8ea9bc38ec845cb1e
 					</div>
 				</div>
 			</div>

@@ -9,7 +9,7 @@ a {
 }
 
 body {
-	background-color: #EDEFF4;
+	background-color: white;
 	text-align: center;
 	overflow: hidden;
 }
@@ -19,6 +19,8 @@ input[type="search"] {
 	height: 32px;
 	font-size: 20px;
 	text-align: left;
+	border-radius: 5px;
+	outline: solid black;
 }
 
 #source-name {
@@ -32,17 +34,28 @@ input[type="search"] {
 
 #autkey-box {
 	font-size: 16px;
-	height: 32px;
+	margin-left: 10px;
+	height: 38px;
+	display: inline;
 	width: 115px;
-	padding-left: 5px;
 	-webkit-appearance: none;
 	background: url(../images/icon.ico) 96% / 15% no-repeat #eee;
+}
+#t2 {
+	margin-top: 40px;
+	height: 40pt;
+	margin-bottom: 40px;
+}
+#table-title {
+	color: black;
+	margin-top: 40px;
+	margin-bottom: 40px;
 }
 
 #number-box {
 	width: 50px;
 	font-size: 18px;
-	height: 32px;
+	height: 38px;
 }
 
 #wordcloud {
@@ -55,6 +68,7 @@ input[type="search"] {
 	border-radius: 10px;
 	-khtml-border-radius: 10px;
 	line-height: 20px;
+	margin-bottom: 50px;
 }
 
 #search_info {
@@ -81,11 +95,14 @@ input[type="search"] {
 	font-size: 20px;
 	background: #2A2C2B;
 	border: none;
-	width: 58%;
+	width: 60%;
 	padding: 6px 150px 6px 150px;
 	text-decoration: none;
 }
-
+.title-header {
+	color: black;
+	margin-bottom: 40px;
+}
 
 .inner-wrap {
 	margin-top: 3px;
@@ -104,7 +121,7 @@ input[type="search"] {
 #tftable {
 	font-size:12px;
 	font-family: Helvetica;
-	color:#000;
+	color:black;
 	width:100%;
 	border-width: 1px;
 	border-color: #000;
@@ -113,10 +130,11 @@ input[type="search"] {
 						
 #tftable th {
 	font-size:14px;
-	background-color:#ccc;
+	background-color:black;
 	border-width: 1px;
 	padding: 2px;
 	border-style: solid;
+	color: white;
 }
 
 #tftable tr {
