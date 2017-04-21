@@ -1,45 +1,46 @@
 ﻿<?php
 
 require_once('../../IEEE/IEEE_Wrapper.php');
+use PHPUnit\Framework\TestCase;
 
-class APITest extends PHPUnit_Framework_TestCase
+class APITest extends TestCase
 {	
-	public static $coverage;
+	// public static $coverage;
 	
-	/**
-	 * @codeCoverageIgnore
-	 */
-	public static function setUpBeforeClass()
-	{
-		APITest::$coverage = new PHP_CodeCoverage();
-	}
+	// /**
+	//  * @codeCoverageIgnore
+	//  */
+	// public static function setUpBeforeClass()
+	// {
+	// 	APITest::$coverage = new PHP_CodeCoverage();
+	// }
 	
-	/**
-	 * @codeCoverageIgnore
-	 */
-	public function setUp()
-	{
-		APITest::$coverage->start($this);
-	}
+	// /**
+	//  * @codeCoverageIgnore
+	//  */
+	// public function setUp()
+	// {
+	// 	APITest::$coverage->start($this);
+	// }
 	
-	/**
-	 * @codeCoverageIgnore
-	 */
-	public function tearDown()
-	{
-		APITest::$coverage->stop();
-	}
-	/**
-	 * @codeCoverageIgnore
-	 */
-	public static function tearDownAfterClass()
-	{
-		$writer = new PHP_CodeCoverage_Report_Clover;
-		$writer->process(APITest::$coverage, 'coverage/APITest.xml');
+	// /**
+	//  * @codeCoverageIgnore
+	//  */
+	// public function tearDown()
+	// {
+	// 	APITest::$coverage->stop();
+	// }
+	// /**
+	//  * @codeCoverageIgnore
+	//  */
+	// public static function tearDownAfterClass()
+	// {
+	// 	$writer = new PHP_CodeCoverage_Report_Clover;
+	// 	$writer->process(APITest::$coverage, 'coverage/APITest.xml');
 		
-		$writer = new PHP_CodeCoverage_Report_HTML;
-		$writer->process(APITest::$coverage, 'coverage/APITest');
-	}
+	// 	$writer = new PHP_CodeCoverage_Report_HTML;
+	// 	$writer->process(APITest::$coverage, 'coverage/APITest');
+	// }
 
 	public function testSanity()
 	{
@@ -91,10 +92,13 @@ class APITest extends PHPUnit_Framework_TestCase
 	public function testExecute(IEEE $IEEE)
 	{
 		$this->assertNotEmpty($IEEE->_query_parameters);
-		
+		 
 		$result = $IEEE->execute_request();
+
 		
 		$this->assertNotNull($result);
+
+
 	}
 	
 	/**
@@ -102,6 +106,7 @@ class APITest extends PHPUnit_Framework_TestCase
 	 */
 	public function testReset(IEEE $IEEE)
 	{
+
 		$this->assertNotEmpty($IEEE->_query_parameters);
 		
 		$IEEE->reset_params();

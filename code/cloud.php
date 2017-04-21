@@ -13,6 +13,10 @@
 		$query = $_GET['query'];
 
 	}
+
+
+
+	
 ?>
 <!DOCTYPE html>
 <html lang="en">

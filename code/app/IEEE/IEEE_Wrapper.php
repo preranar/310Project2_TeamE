@@ -96,7 +96,6 @@ class IEEE {
 		$url = $this->build_query_url();
 
 
-		echo '<script> console.log("URLL: ' . $url . '"); </script> ';
 		
 		if (!$ch) {
 			$ch = curl_init($url);

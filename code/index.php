@@ -29,7 +29,7 @@
 							<option value="keyword">Keyword</option>
 							<option value="author">Author</option>
 						</select>
-						<input id="number-box" type="number" min="1" max ="100" value="1" autofocus required>
+						<input id="number-box" type="number" min="1" max ="100" value="10" autofocus required>
 					</div>
 					<div class="inner-wrap">
 					   <button id = "search-button" class="button" type="submit" class="Submit">ǫᴜᴇʀʏ</button>		

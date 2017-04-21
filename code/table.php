@@ -1,6 +1,7 @@
 <?php  
 	require_once('app/Application.php');
 	$WC = $_SESSION['WC'];
+	$numChecked = 0;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,8 +29,10 @@
 			 alert("Look at newfile.txt! It's there!!!!!");
 		}
 		</script>
-<<<<<<< HEAD
 
+		<script type="text/javascript">
+
+		</script>
 		<script src="sorttable.js"></script>
 			</head>
 	<body>
@@ -51,11 +54,10 @@
 						// catch (Exception $e) {
 						// }
 						$query = $_GET['query'];
-
 						try {
 							$WC = new WordCloud($query);
 							
-							 $WC->generateCloud(new IEEE());
+							 $WC->generateCloud2(new IEEE());
 							 $_SESSION['WC'] = $WC;
 							 $WC->generateWC();
 						}
@@ -74,6 +76,20 @@
 					}
 					echo '<script> document.getElementById("title-page").innerHTML = "' . $query . '"</script>';
 					echo '<script> document.getElementById("table-title").innerHTML = "' . $query . '"</script>';
+					echo '<script>
+						function searchForCheckedPapers() {
+							var inputElems = document.getElementsByTagName("input");
+							var count = 0;
+							for (var i=0; i<inputElems.length; i++) {
+								if (inputElems[i].type === "checkbox" && inputElems[i].checked === true) {
+									count++;
+								}
+							}
+							alert(count); 
+							window.location.href = "/cloud.php?query=' . $query . '"; 
+						}
+					</script>';  
+			
 				?>
 				<div id="search_info">
 					<table class="tablesorter sortable" id="tftable" border="1">
@@ -91,6 +107,15 @@
 						<?php 
 						$myFile = fopen('newfile.txt', 'w') or die('unable to open');
 						$papers = $WC->getPapers(new IEEE());
+						if ($papers == NULL) {
+							echo '<script> console.log("papers is null"); </script>'; 
+						} else {
+							echo '<script> console.log("papers is not null"); </script>'; 
+						}
+
+						if ($WC == NULL) {
+							echo '<script> console.log("WC is null"); </script>'; 
+						}
 							foreach($papers as $paper) {
 								$p = implode('|', $paper); 
 									echo '<script> console.log("Paper title: ' . $p . '"); </script> ';
@@ -100,10 +125,7 @@
 							$authorArray = array("author");
 							$titleArray = array("test");
 							$conferenceArray = array("conf");
-<<<<<<< HEAD
 							srand(10); 
-=======
->>>>>>> 9beafcbde1fa4e64da4a61f8ea9bc38ec845cb1e
 						foreach ($WC->papers as $key => $paper) {
 							$WC->query = $_GET['query'];
 							$frequency = 0;
@@ -123,14 +145,9 @@
 							echo '<script> console.log("Abs: ' . $ab . '"); </script> ';
 							echo '<tr><td>'.$frequency.'</td>';
 							echo '<td>';
-<<<<<<< HEAD
 							array_push($titleArray, $paper->title);
 							
 							array_push($frequencyArray, $frequency . "");
-=======
-							array_push($titleArray, $paper->title); 
-							array_push($frequencyArray, $paper->countWord($WC->query) . "");
->>>>>>> 9beafcbde1fa4e64da4a61f8ea9bc38ec845cb1e
 							array_push($authorArray, $paper->author_string);
 							array_push($conferenceArray, $paper->source);
 							echo '<script> console.log("array title: ' . $titleArray[sizeof($titleArray)-1] . '"); </script> ';
@@ -207,7 +224,7 @@
 
 							</script>'; 
 							
-							echo '<input type="checkbox" id='. "\"checkbox" . $paper->title . "\"" . '> <button id='. "\"button" . $ab . "\"" . '>'.$paper->title.'</button><br>';
+							echo '<input type="checkbox" id='. "\"checkbox" . $paper->title . "\"" . '> <button id='. "\"button" . $ab . "\"" . ' class="abstract-button">'.$paper->title.'</button><br>';
 							echo '<script> 
 							var b = document.getElementById('. "\"button" . $ab . "\"" . ');
 
@@ -286,18 +303,17 @@
 						</tbody>
 					</table>
 					<div class="table-button">
-						<a type="submit" class="table-button" value="Export '<?php echo strtolower($query) ?>' to PDF" target="_blank" href="./app/PDFconverter.php?url=<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" ?>" ><span class="a-button">ᴇxᴘᴏʀᴛ to PDF</span></a>
+						<a type="submit" id="export-pdf-button" class="table-button" value="Export '<?php echo strtolower($query) ?>' to PDF" target="_blank" href="./app/PDFconverter.php?url=<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" ?>" ><span class="a-button">ᴇxᴘᴏʀᴛ to PDF</span></a>
 					</div>
 
 					<div class="table-button">
-						<button onclick="createTextFile()"><span class="a-button">ᴇxᴘᴏʀᴛ to text file</span></button>
-<<<<<<< HEAD
+						<button onclick="createTextFile()" id="export-text-button"><span class="a-button">ᴇxᴘᴏʀᴛ to text file</span></button>
+
 					</div>
 
 					<div class="table-button">
 						<button onclick="searchForCheckedPapers()"><span class="a-button">Search for checked papers</span></button>
-=======
->>>>>>> 9beafcbde1fa4e64da4a61f8ea9bc38ec845cb1e
+
 					</div>
 				</div>
 			</div>

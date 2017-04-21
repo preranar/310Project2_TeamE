@@ -6,13 +6,13 @@ require_once('Paper.php');
  * If you don't want to use your own IEEE
  * Ignore code coverage because of simplicity and output of external API is not in scope of tests 
  */
-function getPaperResults($author, $keyword, $limit = 10) {
+function getPaperResults($author, $keyword, $limit=10) {
 	$IEEE = new IEEE(); //@codeCoverageIgnore
 	return getResults($author, $keyword, $IEEE, $limit); //@codeCoverageIgnore
 }
 
 //If you want to use your own IEEE
-function getResults($author, $keyword, $IEEE, $limit = 10) {
+function getResults($author, $keyword, $IEEE, $limit=10) {
 	
 
 	//echo '<script> console.log("Getting results for: ' . $keyword . '"); </script> ';
