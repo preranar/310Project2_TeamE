@@ -76,3 +76,13 @@ Scenario: The user can click on a subset of papers to form a word cloud
 	Given user nine is on the paper list page
 	When the user clicks on a subset of papers
 	Then a new word cloud should be generated
+
+Scenario: The user can see the word highlighted in the PDF
+	Given the user has generated a new word cloud
+	And the user wants to download a PDF of a paper
+	Then the user can see the word highlighted in the paper
+
+Scenario: The user can see the word highlighted in the abstract popup
+	Given user ten is on the paper list page
+	When the user clicks on a title of a paper
+	Then the user can see the clicked word highlighted in the abstract

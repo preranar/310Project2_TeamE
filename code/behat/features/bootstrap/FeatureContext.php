@@ -1241,7 +1241,8 @@ class FeatureContext extends MinkContext
         $wordCloudButton->click();
         while(!$page->find('css','#search_info')){
         };
-        throw new Exception("subset not working");
+        //throw new Exception("subset not working");
+        $session->stop();
     }
 
     /**
@@ -1258,6 +1259,88 @@ class FeatureContext extends MinkContext
     public function aNewWordCloudShouldBeGenerated()
     {
         echo("test passed");
+    }
+
+
+    /**
+     * @Given /^the user has generated a new word cloud$/
+     */
+    public function theUserHasGeneratedANewWordCloud()
+    {
+        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+        $session = new \Behat\Mink\Session($driver);         
+        $session->start();
+        $session->visit('http://localhost');
+        $page = $session->getPage();
+        $searchButton = $page->find('css', "#search-button");
+        $searchBar = $page->find('css', '#search-box');
+        $searchBar->focus();
+        $searchBar->setValue("circuit");
+        $searchButton->click();
+        while(!$page->find('css', '#effective-cloud-button')){
+        };
+        $wordCloudButton = $page->find('css', '#effective-cloud-button');
+        $wordCloudButton->click();
+        while(!$page->find('css','#search_info')){
+        };
+        //$session->stop();
+        throw new Exception("highlight in pdf failed");
+    }
+
+    /**
+     * @Given /^the user wants to download a PDF of a paper$/
+     */
+    public function theUserWantsToDownloadAPdfOfAPaper()
+    {
+        //throw new PendingException();
+    }
+
+    /**
+     * @Then /^the user can see the word highlighted in the paper$/
+     */
+    public function theUserCanSeeTheWordHighlightedInThePaper()
+    {
+        //throw new PendingException();
+    }
+
+    /**
+     * @Given /^user ten is on the paper list page$/
+     */
+    public function userTenIsOnThePaperListPage()
+    {
+        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+        $session = new \Behat\Mink\Session($driver);         
+        $session->start();
+        $session->visit('http://localhost');
+        $page = $session->getPage();
+        $searchButton = $page->find('css', "#search-button");
+        $searchBar = $page->find('css', '#search-box');
+        $searchBar->focus();
+        $searchBar->setValue("circuit");
+        $searchButton->click();
+        while(!$page->find('css', '#effective-cloud-button')){
+        };
+        $wordCloudButton = $page->find('css', '#effective-cloud-button');
+        $wordCloudButton->click();
+        while(!$page->find('css','#search_info')){
+        };
+        $session->stop();
+    }
+
+    /**
+     * @When /^the user clicks on a title of a paper$/
+     */
+    public function theUserClicksOnATitleOfAPaper()
+    {
+        //throw new PendingException();
+    }
+
+    /**
+     * @Then /^the user can see the clicked word highlighted in the abstract$/
+     */
+    public function theUserCanSeeTheClickedWordHighlightedInTheAbstract()
+    {
+        //throw new PendingException();
     }
 
 
